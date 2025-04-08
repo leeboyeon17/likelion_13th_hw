@@ -1,0 +1,82 @@
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block content %}
+    <img src="{% static 'images/logo.png' %}" alt="logo" width="100px">
+    <h1 class="contents">2025 멋쟁이사자처럼 {{ generation }}기</h1>
+    <div class="contents">🦁 2주차 세션 정리 🦁</div>
+   
+    
+    
+    <h2>초기세팅</h2>
+    <ol>
+        <li>가상환경 켜기(pipenv shell)</li>
+        <li>.gitignore 파일 만들기(touch .gitignore)</li>
+        <li>gitinore.io 접속 후 django 검색하여 나온 내용 .gitignore 파일에 붙여넣기</li>
+        <h3>!! .gitignore하는 이유: 충돌방지</h3>
+    </ol>
+        
+    <br>
+
+    <h2>Template</h2>
+    <ol>
+        <li>HTML 페이지 만들기</li>
+            <ul>
+                <li>main/templates/main 경로의 폴더에 mainpage.html 파일 생성 (mainpage를 만들 경우)</li>
+                <li>해당 파일에 웹페이지 내용 구성에 필요한 코드 붙여넣기</li>
+            </ul>
+        <li>HTML 페이지와 View 연결하기</li>
+            <ul>
+                <li>views.py 작성: 원하는 url을 통해 작성한 mainpage가 보여지도록 하기 위함</li>
+                <li>urls.py 작성: url을 통해 HTML 페이지와 View를 연결하기 위함</li>
+            </ul>
+        <li>HTML 페이지와 View 연결하기</li>
+            <ul>
+                <li>HTML 페이지에서 url에 연결되어 있는 페이지로 이동할 수 있게 하기 위함</li>
+                <li>.html 페이지의 nav에 {} 안에 '% url 'name' %'입력</li>
+                <li>이때 {} 안 '% url 'name' %'은 Template 언어를 사용한 url 문법이다!</li>
+            </ul>
+    </ol>
+    
+    <br>
+
+    <h2>Template 언어란?</h2>
+    <ol> 
+        <h4>: 파이썬의 변수, 문법을 html에서 사용할 수 있도록 제공하는 직관적인 언어(크게 4가지 기능을 제공)</h4>
+        <li>템플릿 변수: view에서 생성한 데이터를 변수로써 사용 가능</li>
+        <li>템플릿 태그: for문(반복문), if문(조건문) 등을 사용 가능</li>
+        <li>템플릿 필터: 템플릿 변수를 특정 서식에 따라 변환 가능</li>
+        <li>템플릿 주석: html 내용 중 주석(숨김)이 필요한 경우 사용</li>
+    </ol>
+
+<br>
+
+    <h2>효율적인 코드</h2>
+    <ul>
+        <li>template 상속</li>
+            <ol>
+                <li>project(폴더)>templates(폴더)>base.html(파일) 경로로 생성</li>
+                <li>반복되는 코드를 base.html로 이동</li>
+                <li>다른 페이지에서 사용될 때를 위해 {} 안에 '% block content %' 와 '% endblock %' 입력</li>
+                <li>.html 파일에 {} 안에 '% extends 'base.html' %', '% block content %', '% endblock %' 입력하여 base.html과 연결</li>
+                <li>project>settings.py에서 os를 import 하고 템플릿 파일을 찾을 수 있는 경로 추가</li>
+            </ol>
+        <li>nav bar 분리</li>
+            <ol>
+                <li>templates 폴더 내에 shared 폴더 생성</li>
+                <li>shared 폴더 내에 _navbar.html 파일 생성</li>
+                <li>base.html에 포함된 nav 영역을 _navbar.html로 옮기기</li>
+                <li>분리한 _navbar.html을 base.html에 상속 시키기</li>
+            </ol>
+    </ul>
+
+    <br>
+
+    <h2>static</h2>
+    <ol> 
+        <h4>: 웹 페이지에서 사용되는 정적인 파일을 저장하는 디렉토리</h4>
+        <li>project 폴더에 static 폴더 생성</li>
+        <li>static 폴더 내에 css, images 폴더 생성+사진 업로드</li>
+        <li>css 폴더 내에 project.css 파일 생성+css 코드 작성</li>
+        <li>project>settings.py에 경로 설정하기</li>
+    </ol>
+    {% endblock %}
